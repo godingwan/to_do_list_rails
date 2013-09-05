@@ -25,5 +25,15 @@ feature 'adding items to a list', %q{
 
       expect(page).to have_content("item1")
     end
+
+    scenario 'must not work if no title is provided' do
+      user = FactoryGirl.create(:user)
+
+      sign_in_as(user)
+      click_link "Add an item"
+      click_button "Add to list"
+
+      expect(page).to have_content("Failed to create item")
+    end
   end
 end
