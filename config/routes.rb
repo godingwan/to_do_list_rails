@@ -2,7 +2,12 @@
   devise_for :users
 
   root :to => 'items#index'
-  resources :items, only: [:new]
+
+  resources :users, only: [:show] do
+    resources :items, only: [:index]
+  end
+
+  resources :items, only: [:new, :create]
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

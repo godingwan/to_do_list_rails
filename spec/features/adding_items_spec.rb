@@ -8,9 +8,22 @@ feature 'adding items to a list', %q{
 
   context 'not signed in' do
     scenario 'must be signed in' do
-      visit new_item_path
+      visit root_path
 
       expect(page).to have_content("You need to sign in or sign up before continuing")
+    end
+  end
+
+  context 'on own list' do
+    scenario 'item appears after creation' do
+      user = FactoryGirl.create(:user)
+
+      sign_in_as(user)
+      click_link "Add an item"
+      fill_in "Item", :with => "item1"
+      click_button "Add to list"
+
+      expect(page).to have_content("item1")
     end
   end
 end

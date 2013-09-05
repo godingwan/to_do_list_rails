@@ -19,4 +19,6 @@ class User < ActiveRecord::Base
       where(conditions).first
     end
   end
+
+  has_many :items, :inverse_of => :user, dependent: :destroy
 end
