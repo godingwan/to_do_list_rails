@@ -35,5 +35,15 @@ feature 'adding items to a list', %q{
 
       expect(page).to have_content("Failed to create item")
     end
+
+    scenario 'must not show after deletion' do
+      user = FactoryGirl.create(:user)
+      item = FactoryGirl.create(:item, user: user)
+
+      sign_in_as(user)
+      click_link "Done"
+
+      expect(page).to_not have_content("finish this project")
+    end
   end
 end

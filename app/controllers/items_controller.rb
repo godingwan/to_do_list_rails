@@ -20,4 +20,11 @@ class ItemsController < ApplicationController
       render action: "new"
     end
   end
+
+  def destroy
+    @item = current_user.items.find(params[:id])
+
+    @item.destroy
+    redirect_to user_items_path(current_user), notice: "Congratulations for finishing an item!"
+  end
 end

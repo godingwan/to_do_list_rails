@@ -1,5 +1,6 @@
 <%- @items.each do |item| %>
   <%= item.name %>
+  <%= link_to 'Done', item_path(item), method: :delete, data: { confirm: "Did you really finish it? It'll be gone from the list forever." } %>
 <%- end %>
 
 <%= link_to 'Add an item', new_item_path %>

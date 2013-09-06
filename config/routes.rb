@@ -7,7 +7,7 @@
     resources :items, only: [:index]
   end
 
-  resources :items, only: [:new, :create]
+  resources :items, only: [:new, :create, :destroy]
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
